@@ -122,6 +122,10 @@ namespace Chords_Calc
                               output( maj_new_chord_num,  min_new_chord_num);
                               break;
                           }
+                          else
+                          {
+                              Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
+                          }
                       }
                   }
               }
@@ -171,6 +175,10 @@ namespace Chords_Calc
                           output( maj_new_chord_num,  min_new_chord_num);
                           break;
                       }
+                       else
+                            {
+                                Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
+                            }
                   }
               }
         } 
