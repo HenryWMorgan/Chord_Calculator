@@ -1,185 +1,160 @@
 using System;
 using System.Collections.Generic;
 
-namespace Chords_Calc
-{
-    internal class Program
+namespace Chords_Calc {
+ internal class Program {
+  public static void Main(string[] args) {
+   Start();
+
+  }
+
+
+  public static void Start() {
+   var chord = Program.Promt("Type in your chord please...");
+   var UorD = Convert.ToInt32(Program.Promt("Downscale(1) or Upscale(2)?"));
+   var transpose = Convert.ToInt32(Program.Promt("How high you would like to transpose it? (Please type in number)..."));
+
+   MajScale(chord, UorD, transpose);
+   MinScale(chord, UorD, transpose);
+  }
+
+
+  // Function Promt displays messages 
+  private static string Promt(string message) {
+   Console.WriteLine(message);
+   return Console.ReadLine();
+  }
+
+
+  private static void output(int maj_new_chord_num, int min_new_chord_num) {
+   var majScaleArray = new string[12];
+
+   majScaleArray[0] = "C";
+   majScaleArray[1] = "C#";
+   majScaleArray[2] = "D";
+   majScaleArray[3] = "D#";
+   majScaleArray[4] = "E";
+   majScaleArray[5] = "F#";
+   majScaleArray[6] = "F";
+   majScaleArray[7] = "G";
+   majScaleArray[8] = "G#";
+   majScaleArray[9] = "A";
+   majScaleArray[10] = "A#";
+   majScaleArray[11] = "H";
+
+   var minScaleArray = new string[12];
+
+   minScaleArray[0] = "Cm";
+   minScaleArray[1] = "C#m";
+   minScaleArray[2] = "Dm";
+   minScaleArray[3] = "D#m";
+   minScaleArray[4] = "Em";
+   minScaleArray[5] = "F#m";
+   minScaleArray[6] = "Fm";
+   minScaleArray[7] = "Gm";
+   minScaleArray[8] = "G#m";
+   minScaleArray[9] = "Am";
+   minScaleArray[10] = "A#m";
+   minScaleArray[11] = "Hm";
+
+
+   if (maj_new_chord_num == 0) {
+    Console.WriteLine("Your Chord is: " + minScaleArray[min_new_chord_num]);
+
+   } else if (min_new_chord_num == 0) {
+    Console.WriteLine("Your Chord is: " + majScaleArray[maj_new_chord_num]);
+   }
+  }
+
+  private static void MajScale(string chord, int UorD, int transpose) {
+   var majScaleArray = new string[12];
+
+   majScaleArray[0] = "C";
+   majScaleArray[1] = "C#";
+   majScaleArray[2] = "D";
+   majScaleArray[3] = "D#";
+   majScaleArray[4] = "E";
+   majScaleArray[5] = "F#";
+   majScaleArray[6] = "F";
+   majScaleArray[7] = "G";
+   majScaleArray[8] = "G#";
+   majScaleArray[9] = "A";
+   majScaleArray[10] = "A#";
+   majScaleArray[11] = "H";
+
+
+
+
+
+   var values = new HashSet < string > (majScaleArray);
+
+
+   foreach(var item in majScaleArray) {
     {
-        public static void Main(string[] args)
-        {
-            Start();
+     if (values.Contains(chord)) {
+      if (item == chord) {
+       var index = Array.IndexOf(majScaleArray, chord);
 
-        }
+       var maj_new_chord_num = 0;
+       var min_new_chord_num = 0;
 
-        
-        public static void Start()
-        {
-            var chord = Program.Promt("Type in your chord please...");
-            var UorD = Convert.ToInt32(Program.Promt("Downscale(1) or Upscale(2)?"));
-            var transpose = Convert.ToInt32(Program.Promt("How high you would like to transpose it? (Please type in number)..."));
-            
-            MajScale( chord,  UorD,  transpose);
-            MinScale( chord,  UorD,  transpose);
-        }
+       if (UorD == 1) {
+        maj_new_chord_num = index - transpose;
+       } else {
+        maj_new_chord_num = index + transpose;
 
-        
-        // Function Promt displays messages 
-        private static string Promt(string message)
-        {
-            Console.WriteLine(message);
-            return Console.ReadLine();
-        }
-
-       
-        private static void output(int maj_new_chord_num, int min_new_chord_num)
-        {
-            var majScaleArray = new string[12];
-
-            majScaleArray[0] = "C";
-            majScaleArray[1] = "C#";
-            majScaleArray[2] = "D";
-            majScaleArray[3] = "D#";
-            majScaleArray[4] = "E";
-            majScaleArray[5] = "F#";
-            majScaleArray[6] = "F";
-            majScaleArray[7] = "G";
-            majScaleArray[8] = "G#";
-            majScaleArray[9] = "A";
-            majScaleArray[10] = "A#";
-            majScaleArray[11] = "H";
-            
-            var minScaleArray = new string[12];
-
-            minScaleArray[0] = "Cm";
-            minScaleArray[1] = "C#m";
-            minScaleArray[2] = "Dm";
-            minScaleArray[3] = "D#m";
-            minScaleArray[4] = "Em";
-            minScaleArray[5] = "F#m";
-            minScaleArray[6] = "Fm";
-            minScaleArray[7] = "Gm";
-            minScaleArray[8] = "G#m";
-            minScaleArray[9] = "Am";
-            minScaleArray[10] = "A#m";
-            minScaleArray[11] = "Hm";
-            
-            
-            if (maj_new_chord_num == 0)
-            {
-                Console.WriteLine("Your Chord is: " + minScaleArray[min_new_chord_num]);
-                
-            }else if (min_new_chord_num == 0)
-            {
-                Console.WriteLine("Your Chord is: " + majScaleArray[maj_new_chord_num]);
-            }
-        }
-
-        private static void MajScale(string chord, int UorD, int transpose)
-        {
-              var majScaleArray = new string[12];
-
-              majScaleArray[0] = "C";
-              majScaleArray[1] = "C#";
-              majScaleArray[2] = "D";
-              majScaleArray[3] = "D#";
-              majScaleArray[4] = "E";
-              majScaleArray[5] = "F#";
-              majScaleArray[6] = "F";
-              majScaleArray[7] = "G";
-              majScaleArray[8] = "G#";
-              majScaleArray[9] = "A";
-              majScaleArray[10] = "A#";
-              majScaleArray[11] = "H";
-
-            
-              
-              
-
-              var values = new HashSet<string>(majScaleArray);
-        
-             
-              foreach (var item in majScaleArray)
-              {
-                  {
-                      if (values.Contains(chord))
-                      {
-                          if (item == chord)
-                          {
-                              var index = Array.IndexOf(majScaleArray, chord);
-                              
-                              var maj_new_chord_num = 0;
-                              var min_new_chord_num = 0;
-            
-                              if (UorD == 1)
-                              {
-                                  maj_new_chord_num = index - transpose;
-                              }
-                              else 
-                              {
-                                  maj_new_chord_num = index + transpose;
-                                  
-                              }  
-                              output( maj_new_chord_num,  min_new_chord_num);
-                              break;
-                          }
-                          else
-                          {
-                              Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
-                          }
-                      }
-                  }
-              }
-        } 
-        
-        private static void MinScale(string chord, int UorD, int transpose)
-        {
-              
-
-              var minScaleArray = new string[12];
-
-              minScaleArray[0] = "Cm";
-              minScaleArray[1] = "C#m";
-              minScaleArray[2] = "Dm";
-              minScaleArray[3] = "D#m";
-              minScaleArray[4] = "Em";
-              minScaleArray[5] = "F#m";
-              minScaleArray[6] = "Fm";
-              minScaleArray[7] = "Gm";
-              minScaleArray[8] = "G#m";
-              minScaleArray[9] = "Am";
-              minScaleArray[10] = "A#m";
-              minScaleArray[11] = "Hm";
-              
-              
-
-              var values = new HashSet<string>(minScaleArray);
-        
-             
-              foreach (var item in minScaleArray)
-              {
-                  if (values.Contains(chord))
-                      {
-                          var index = Array.IndexOf(minScaleArray, chord);
-                          
-                          var min_new_chord_num = 0;
-                          var maj_new_chord_num = 0;
-            
-                          if (UorD == 1)
-                          {
-                              min_new_chord_num = index - transpose;
-                          }
-                          else 
-                          {
-                              min_new_chord_num = index + transpose;
-                          }  
-                          output( maj_new_chord_num,  min_new_chord_num);
-                          break;
-                      }
-                       else
-                            {
-                                Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
-                            }
-                  }
-              }
-        } 
+       }
+       output(maj_new_chord_num, min_new_chord_num);
+       break;
+      } else {
+       Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
+      }
+     }
     }
+   }
+  }
+
+  private static void MinScale(string chord, int UorD, int transpose) {
+
+
+   var minScaleArray = new string[12];
+
+   minScaleArray[0] = "Cm";
+   minScaleArray[1] = "C#m";
+   minScaleArray[2] = "Dm";
+   minScaleArray[3] = "D#m";
+   minScaleArray[4] = "Em";
+   minScaleArray[5] = "F#m";
+   minScaleArray[6] = "Fm";
+   minScaleArray[7] = "Gm";
+   minScaleArray[8] = "G#m";
+   minScaleArray[9] = "Am";
+   minScaleArray[10] = "A#m";
+   minScaleArray[11] = "Hm";
+
+
+
+   var values = new HashSet < string > (minScaleArray);
+
+
+   foreach(var item in minScaleArray) {
+    if (values.Contains(chord)) {
+     var index = Array.IndexOf(minScaleArray, chord);
+
+     var min_new_chord_num = 0;
+     var maj_new_chord_num = 0;
+
+     if (UorD == 1) {
+      min_new_chord_num = index - transpose;
+     } else {
+      min_new_chord_num = index + transpose;
+     }
+     output(maj_new_chord_num, min_new_chord_num);
+     break;
+    } else {
+     Console.WriteLine("Whhops.... We could not find this chord. Make sure you've typed it in correctly. ");
+    }
+   }
+  }
+ }
+}
